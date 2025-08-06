@@ -1,0 +1,19 @@
+# -*- coding: utf-8; mode: dockerfile; -*-
+FROM docker.io/library/debian:trixie
+LABEL maintainer="Tom Vaughan <tom@jstvsolutions.com>"
+
+ENV LC_ALL=C.UTF-8 LANG=C.UTF-8
+
+RUN export DEBIAN_FRONTEND=noninteractive                                       \
+    && apt -q update                                                            \
+    && apt -q dist-upgrade -y                                                   \
+    && apt -q install -y                                                        \
+        dumb-init                                                               \
+    && apt -q clean                                                             \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /mnt/workdir
+
+ENTRYPOINT ["dumb-init", "--"]
+
+CMD ["bash"]
