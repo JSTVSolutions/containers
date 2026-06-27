@@ -9,7 +9,7 @@ RUN export DEBIAN_FRONTEND=noninteractive                                       
     && apt -q dist-upgrade -y                                                   \
     && apt -q install -y                                                        \
         automake                                                                \
-        dumb-init                                                               \
+        catatonit                                                               \
         gcc                                                                     \
         git                                                                     \
         make                                                                    \
@@ -19,6 +19,6 @@ RUN export DEBIAN_FRONTEND=noninteractive                                       
 
 WORKDIR /mnt/workdir
 
-ENTRYPOINT ["dumb-init", "--"]
+ENTRYPOINT ["catatonit", "--"]
 
 CMD ["bash"]

@@ -5,10 +5,13 @@ env:
 on: [push]
 jobs:
   push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: Build and push container images
+        run: |
+          sudo apt update
+          sudo apt install -y qemu-user-binfmt
           make push
     permissions:
       packages: write
